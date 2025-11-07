@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- Phần 1: Thông tin cá nhân -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/avatar"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Họ và tên: Hoàng Văn Vương Thu" />
+
+        <TextView
+            android:id="@+id/mssv_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MSSV: 23162099" />
+
+        <TextView
+            android:id="@+id/major_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngành học: An toàn thông tin" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/darker_gray" />
+
+    <!-- Phần 2: Yêu cầu 4 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Yêu cầu 4: Lọc số chẵn/lẻ"
+            android:textStyle="bold" />
+        
+        <EditText
+            android:id="@+id/numbers_input_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập các số, cách nhau bởi dấu phẩy" 
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/filter_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Lọc số" />
+
+        <TextView
+            android:id="@+id/even_numbers_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Các số chẵn: "/>
+
+        <TextView
+            android:id="@+id/odd_numbers_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Các số lẻ: "/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/darker_gray" />
+
+    <!-- Phần 3: Yêu cầu 5 -->
+    <!-- Phần 3: Yêu cầu 5 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Yêu cầu 5: Đảo ngược chuỗi"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/input_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập chuỗi bất kỳ" />
+
+        <Button
+            android:id="@+id/reverse_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Đảo ngược" />
+
+        <TextView
+            android:id="@+id/result_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Kết quả sẽ hiển thị ở đây" />
+
+    </LinearLayout>
+
+</LinearLayout>
