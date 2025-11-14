@@ -10,14 +10,14 @@ Deadline  22g30 ngày 15/11/2025
 <figure>
   <img src="./images/login.png" alt="Login screen" width="500" />
   <figcaption style="margin-top: 12px;">
-    <strong>Hình 1.</strong> Màn hình Login — gồm email, password, nút đăng nhập và login bằng Facebook/Google.
+    <strong>Hình 1.</strong> Màn hình Login — gồm email, password, nút đăng nhập và đăng nhập bằng Facebook/Google. Nút chuyển hướng đến trang đăng kí tài khoản.
   </figcaption>
 </figure>
 
 <figure>
   <img src="./images/signup.png" alt="Signup screen" width="500" />
   <figcaption style="margin-top: 12px;">
-    <strong>Hình 2.</strong> Màn hình Register — người dùng nhập tên, email, mật khẩu và nút đăng ký.
+    <strong>Hình 2.</strong> Màn hình Register — người dùng nhập tên, email, mật khẩu, nút đăng ký và nút chuyển đến trang quên mật khẩu.
   </figcaption>
 </figure>
 
