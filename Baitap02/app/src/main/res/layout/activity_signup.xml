@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?><ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FEF5ED"
+    android:fitsSystemWindows="true"
+    tools:context=".SignupActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/top_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            app:layout_constraintHeight_max="300dp"
+            android:src="@drawable/top_background2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- Tiêu đề "Create Account" -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp"
+            android:text="Create\nAccount"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#2F5678"
+            app:layout_constraintTop_toBottomOf="@id/top_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Icon Name -->
+        <ImageView
+            android:id="@+id/ivName"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/name"
+            android:contentDescription="name icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+        <!-- Trường nhập Name -->
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Name"
+            android:textSize="16sp"
+            android:background="@null"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toEndOf="@id/ivName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivName"
+            app:layout_constraintBottom_toBottomOf="@+id/ivName" />
+
+        <View
+            android:id="@+id/name_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="#CCCCCC"
+            app:layout_constraintStart_toStartOf="@id/ivName"
+            app:layout_constraintEnd_toEndOf="@id/etName"
+            app:layout_constraintTop_toBottomOf="@id/etName" />
+
+        <!-- Icon Email -->
+        <ImageView
+            android:id="@+id/ivEmail"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/email"
+            android:contentDescription="email icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_divider" />
+
+        <!-- Trường nhập Email -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Email"
+            android:textSize="16sp"
+            android:background="@null"
+            android:inputType="textEmailAddress"
+            app:layout_constraintStart_toEndOf="@id/ivEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivEmail"
+            app:layout_constraintBottom_toBottomOf="@+id/ivEmail" />
+
+        <View
+            android:id="@+id/email_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="#CCCCCC"
+            app:layout_constraintStart_toStartOf="@id/ivEmail"
+            app:layout_constraintEnd_toEndOf="@id/etEmail"
+            app:layout_constraintTop_toBottomOf="@id/etEmail" />
+
+        <!-- Icon Mật khẩu -->
+        <ImageView
+            android:id="@+id/ivPassword"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/password"
+            android:contentDescription="password icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_divider" />
+
+        <!-- Trường nhập Mật khẩu -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Password"
+            android:textSize="16sp"
+            android:background="@null"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toEndOf="@id/ivPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivPassword"
+            app:layout_constraintBottom_toBottomOf="@id/ivPassword" />
+
+        <View
+            android:id="@+id/password_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="#CCCCCC"
+            app:layout_constraintStart_toStartOf="@id/ivPassword"
+            app:layout_constraintEnd_toEndOf="@id/etPassword"
+            app:layout_constraintTop_toBottomOf="@id/etPassword" />
+
+        <!-- Nút mũi tên màu xanh -->
+        <ImageButton
+            android:id="@+id/btnArrow"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/btn_arrow2"
+            android:background="@android:color/transparent"
+            android:padding="0dp"
+            android:scaleType="centerInside"
+            android:contentDescription="Create Account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_divider"/>
+
+        <!-- Link quên mật khẩu -->
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Forget your password? Recovery it"
+            android:textColor="#2F5678"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

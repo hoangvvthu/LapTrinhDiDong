@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FEF5ED"
+    android:fitsSystemWindows="true"
+    tools:context=".LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Ảnh nền trên cùng - Đã được sửa đổi -->
+        <ImageView
+            android:id="@+id/top_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            app:layout_constraintHeight_max="300dp"
+            android:src="@drawable/top_background1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- Tiêu đề "Welcome Back" - Đã được sửa đổi -->
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp"
+            android:text="Welcome\nBack"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#F57C00"
+            app:layout_constraintTop_toBottomOf="@id/top_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Icon Email -->
+        <ImageView
+            android:id="@+id/ivEmail"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/email"
+            android:contentDescription="email icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+
+        <!-- Trường nhập Email -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Email"
+            android:textSize="16sp"
+            android:background="@null"
+            android:inputType="textEmailAddress"
+            app:layout_constraintStart_toEndOf="@id/ivEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivEmail"
+            app:layout_constraintBottom_toBottomOf="@+id/ivEmail" />
+
+        <View
+            android:id="@+id/email_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="#CCCCCC"
+            app:layout_constraintStart_toStartOf="@id/ivEmail"
+            app:layout_constraintEnd_toEndOf="@id/etEmail"
+            app:layout_constraintTop_toBottomOf="@id/etEmail" />
+
+        <!-- Icon Mật khẩu -->
+        <ImageView
+            android:id="@+id/ivPassword"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/password"
+            android:contentDescription="password icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_divider" />
+
+        <!-- Trường nhập Mật khẩu -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Password"
+            android:textSize="16sp"
+            android:background="@null"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toEndOf="@id/ivPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivPassword"
+            app:layout_constraintBottom_toBottomOf="@id/ivPassword" />
+
+        <View
+            android:id="@+id/password_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="#CCCCCC"
+            app:layout_constraintStart_toStartOf="@id/ivPassword"
+            app:layout_constraintEnd_toEndOf="@id/etPassword"
+            app:layout_constraintTop_toBottomOf="@id/etPassword" />
+
+        <!-- Nút mũi tên -->
+        <ImageButton
+            android:id="@+id/btnArrow"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_arrow1"
+            android:padding="0dp"
+            android:scaleType="centerInside"
+            android:contentDescription="login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_divider" />
+
+        <!-- Hàng chứa các nút mạng xã hội -->
+        <LinearLayout
+            android:id="@+id/social_buttons_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvRegister"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Nút Facebook -->
+            <FrameLayout
+                android:id="@+id/buttonFacebook"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/outlined_button_bg"
+                    android:gravity="center_vertical|start"
+                    android:paddingStart="14dp"
+                    android:text="Facebook"
+                    android:textSize="14sp"
+                    android:textColor="#2F5678" />
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/facebook"
+                    android:padding="0dp"
+                    android:background="@android:color/transparent"/>
+            </FrameLayout>
+
+            <!-- Nút Google -->
+            <FrameLayout
+                android:id="@+id/buttonGoogle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/outlined_button_bg"
+                    android:gravity="center_vertical|start"
+                    android:paddingStart="14dp"
+                    android:text="Google"
+                    android:textSize="14sp"
+                    android:textColor="#2F5678" />
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/google"
+                    android:padding="0dp"
+                    android:background="@android:color/transparent"/>
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Link đăng ký -->
+        <TextView
+            android:id="@+id/tvRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Are you new user? Register"
+            android:textColor="#F57C00"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
