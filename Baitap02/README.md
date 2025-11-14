@@ -2,6 +2,8 @@
 
 ## 📋 Yêu cầu
 Làm bài tập số 1 (giao diện login và register) trong slide
+
+
 Deadline  22g30 ngày 15/11/2025
 ---
 
@@ -10,6 +12,8 @@ Deadline  22g30 ngày 15/11/2025
   <img src="./images/login.png" alt="Login screen" width="500" />
   <figcaption><strong>Hình 1.</strong> Màn hình Login — gồm email, password, nút đăng nhập và login bằng Facebook/Google.</figcaption>
 </figure>
+
+
 
 <figure>
   <img src="./images/signup.png" alt="Signup screen" width="500" />
