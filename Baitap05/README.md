@@ -3,7 +3,7 @@
 ## 📋 Yêu cầu  
 **Kết nối API với thư viện Retrofit2**  
 
-1. ** Thiết kế giao diện**
+1. **Thiết kế giao diện**
 2. **Cài đặt thư viện retrofit**  
 3. **Thêm cài đặt quyền truy cập internet**  
 4. **Chuẩn bị API**   
