@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private ViewPager2Adapter viewPager2Adapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,17 +26,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolBar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Fragment, Tablayout and Viewpager2");
+        }
 
         binding.fabAction.setOnClickListener(view -> {
             Toast.makeText(this, "Replace with your own action", Toast.LENGTH_SHORT).show();
         });
 
-        // Set up ViewPager2 Adapter
         FragmentManager fragmentManager = getSupportFragmentManager();
         viewPager2Adapter = new ViewPager2Adapter(fragmentManager, getLifecycle());
         binding.viewPager2.setAdapter(viewPager2Adapter);
 
-        // Connect TabLayout and ViewPager2 using TabLayoutMediator
         new TabLayoutMediator(binding.tabLayout, binding.viewPager2, (tab, position) -> {
             switch (position) {
                 case 0:
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }).attach();
 
-        // Add a listener to handle actions when a tab is selected, like changing the FAB icon
         binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeFabIcon(final int index) {
         binding.fabAction.hide();
-        // Using Handler(Looper.getMainLooper()) is the modern and safer way
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             switch (index) {
                 case 0:

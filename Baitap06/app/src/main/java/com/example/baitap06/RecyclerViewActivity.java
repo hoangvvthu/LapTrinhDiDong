@@ -26,21 +26,17 @@ public class RecyclerViewActivity extends AppCompatActivity {
         binding = ActivityRecyclerviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Set up the Toolbar
         setSupportActionBar(binding.recyclerToolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("RecyclerView Example");
+            getSupportActionBar().setTitle("RecyclerView");
         }
 
-        // 1. Initialize data
         initData();
 
-        // 2. Set up RecyclerView
         iconAdapter = new IconAdapter(this, arrayList);
         binding.rcIcon.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         binding.rcIcon.setAdapter(iconAdapter);
 
-        // 3. Set up search listener
         setupSearchListener();
     }
 

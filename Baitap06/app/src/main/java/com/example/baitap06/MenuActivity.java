@@ -2,10 +2,7 @@ package com.example.baitap06;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.baitap06.databinding.ActivityMenuBinding;
 
 public class MenuActivity extends AppCompatActivity {
@@ -18,32 +15,19 @@ public class MenuActivity extends AppCompatActivity {
         binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnFragmentExample.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, MainActivity.class));
-            }
-        });
+        binding.btnFragmentExample.setOnClickListener(v -> 
+            startActivity(new Intent(MenuActivity.this, MainActivity.class)));
 
-        binding.btnRecyclerExample.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, RecyclerViewActivity.class));
-            }
-        });
+        binding.btnRecyclerExample.setOnClickListener(v -> 
+            startActivity(new Intent(MenuActivity.this, RecyclerViewActivity.class)));
 
-        binding.btnFlipperExample.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, FlipperActivity.class));
-            }
-        });
+        binding.btnFlipperExample.setOnClickListener(v -> 
+            startActivity(new Intent(MenuActivity.this, FlipperActivity.class)));
 
-        binding.btnViewPagerExample.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, ViewPagerActivity.class));
-            }
-        });
+        binding.btnViewPagerExample.setOnClickListener(v -> 
+            startActivity(new Intent(MenuActivity.this, ViewPagerActivity.class)));
+
+        binding.btnViewPager2Example.setOnClickListener(v -> 
+            startActivity(new Intent(MenuActivity.this, ViewPager2Activity.class)));
     }
 }

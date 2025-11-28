@@ -23,10 +23,9 @@ public class FlipperActivity extends AppCompatActivity {
         binding = ActivityFlipperBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Set up the Toolbar
         setSupportActionBar(binding.flipperToolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("ViewFlipper Example");
+            getSupportActionBar().setTitle("Slide Images with ViewFlipper");
         }
 
         ActionViewFlipper();
@@ -34,7 +33,6 @@ public class FlipperActivity extends AppCompatActivity {
 
     private void ActionViewFlipper() {
         List<String> arrayListFlipper = new ArrayList<>();
-        // Corrected API paths
         arrayListFlipper.add("http://app.iotstar.vn:8081/appfoods/flipper/quangcao.PNG");
         arrayListFlipper.add("http://app.iotstar.vn:8081/appfoods/flipper/coffee.jpg");
         arrayListFlipper.add("http://app.iotstar.vn:8081/appfoods/flipper/companypizza.jpeg");

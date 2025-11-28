@@ -12,8 +12,6 @@ import com.example.baitap06.databinding.ActivityViewPagerBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.relex.circleindicator.CircleIndicator;
-
 public class ViewPagerActivity extends AppCompatActivity {
 
     private ActivityViewPagerBinding binding;
@@ -38,20 +36,17 @@ public class ViewPagerActivity extends AppCompatActivity {
         binding = ActivityViewPagerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Set up the Toolbar
         setSupportActionBar(binding.viewPagerToolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("ViewPager & Indicator Example");
+            getSupportActionBar().setTitle("Slide Images with ViewPager and Indicator");
         }
 
         imagesList = getListImages();
         adapter = new ImagesViewPagerAdapter(imagesList);
         binding.viewpager.setAdapter(adapter);
 
-        // Link ViewPager and Indicator
         binding.circleIndicator.setViewPager(binding.viewpager);
 
-        // Start auto-run
         handler.postDelayed(runnable, 3000);
 
         binding.viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -21,4 +21,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Baitap06"
 include(":app")
- 

@@ -12,27 +12,34 @@
         android:id="@+id/btnFragmentExample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bài tập Fragment &amp; ViewPager" />
+        android:text="Fragment, Tablayout and Viewpager2" />
 
     <Button
         android:id="@+id/btnRecyclerExample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Bài tập RecyclerView" />
+        android:text="recyclerview with indicator" />
 
     <Button
         android:id="@+id/btnFlipperExample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Bài tập ViewFlipper" />
+        android:text="Slide Images with ViewFlipper" />
 
     <Button
         android:id="@+id/btnViewPagerExample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Bài tập ViewPager &amp; Indicator" />
+        android:text="Slide Images with ViewPager and Indicator" />
+
+    <Button
+        android:id="@+id/btnViewPager2Example"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Slide Images with ViewPager2 and Indicator3" />
 
 </LinearLayout>
