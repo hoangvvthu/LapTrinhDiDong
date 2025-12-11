@@ -1,22 +1,15 @@
 package com.example.baitap07
 
-import android.annotation.SuppressLint
-import android.content.ContentUris
 import android.content.Context
-import android.database.Cursor
 import android.net.Uri
-import android.os.Build
-import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 
 object RealPathUtil {
-    @SuppressLint("NewApi")
-    fun getRealPath(context: Context, uri: Uri): String? {
-        val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 
+    fun getRealPath(context: Context, uri: Uri): String? {
         // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+        if (DocumentsContract.isDocumentUri(context, uri)) {
             // ExternalStorageProvider
             if (isExternalStorageDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
@@ -24,13 +17,12 @@ object RealPathUtil {
                 val type = split[0]
 
                 if ("primary".equals(type, ignoreCase = true)) {
-                    return Environment.getExternalStorageDirectory().toString() + "/" + split[1]
+                    return "/storage/emulated/0/" + split[1]
                 }
+
             } else if (isDownloadsDocument(uri)) {
                 val id = DocumentsContract.getDocumentId(uri)
-                val contentUri = ContentUris.withAppendedId(
-                    Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(id)
-                )
+                val contentUri = Uri.parse("content://downloads/public_downloads/$id")
                 return getDataColumn(context, contentUri, null, null)
             } else if (isMediaDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
@@ -46,6 +38,7 @@ object RealPathUtil {
 
                 val selection = "_id=?"
                 val selectionArgs = arrayOf(split[1])
+
                 return getDataColumn(context, contentUri, selection, selectionArgs)
             }
         } else if ("content".equals(uri.scheme, ignoreCase = true)) {
@@ -53,29 +46,19 @@ object RealPathUtil {
         } else if ("file".equals(uri.scheme, ignoreCase = true)) {
             return uri.path
         }
+
         return null
     }
 
-    private fun getDataColumn(
-        context: Context,
-        uri: Uri?,
-        selection: String?,
-        selectionArgs: Array<String>?
-    ): String? {
-        var cursor: Cursor? = null
+    private fun getDataColumn(context: Context, uri: Uri?, selection: String?, selectionArgs: Array<String>?): String? {
         val column = "_data"
         val projection = arrayOf(column)
-        try {
-            cursor = context.contentResolver.query(
-                uri!!, projection,
-                selection, selectionArgs, null
-            )
-            if (cursor != null && cursor.moveToFirst()) {
+
+        context.contentResolver.query(uri!!, projection, selection, selectionArgs, null)?.use { cursor ->
+            if (cursor.moveToFirst()) {
                 val columnIndex = cursor.getColumnIndexOrThrow(column)
                 return cursor.getString(columnIndex)
             }
-        } finally {
-            cursor?.close()
         }
         return null
     }

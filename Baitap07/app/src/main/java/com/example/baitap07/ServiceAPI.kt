@@ -9,24 +9,23 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.PartMap
 
 interface ServiceAPI {
+
     @Multipart
     @POST("updateimages.php")
-    fun updateImage(
-        @Part("id") id: RequestBody,
+    fun upload(
+        @PartMap parts: Map<String, @JvmSuppressWildcards RequestBody>,
         @Part avatar: MultipartBody.Part
-    ): Call<Message>
+    ): Call<List<ImageUpload>>
 
     companion object {
         private const val BASE_URL = "http://app.iotstar.vn:8081/appfoods/"
 
-        val serviceApi: ServiceAPI by lazy {
-            val gson = GsonBuilder()
-                .setLenient()
-                .create()
-
-            Retrofit.Builder()
+        fun create(): ServiceAPI {
+            val gson = GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()
+            return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
