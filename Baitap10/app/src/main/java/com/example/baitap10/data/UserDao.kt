@@ -1,9 +1,9 @@
-package com.example.baitap11.data
+package com.example.baitap10.data
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.baitap11.model.User
+import com.example.baitap10.model.User
 
 @Dao
 interface UserDao {

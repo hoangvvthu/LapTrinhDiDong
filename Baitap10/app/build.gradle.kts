@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.baitap11"
+    namespace = "com.example.baitap10"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.baitap11"
+        applicationId = "com.example.baitap10"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -52,6 +52,13 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    // Missing dependencies for baitap07 files
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

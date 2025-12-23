@@ -1,11 +1,11 @@
-package com.example.baitap11.data
+package com.example.baitap10.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.baitap11.model.Task
-import com.example.baitap11.model.User
+import com.example.baitap10.model.Task
+import com.example.baitap10.model.User
 
 @Database(entities = [User::class, Task::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {

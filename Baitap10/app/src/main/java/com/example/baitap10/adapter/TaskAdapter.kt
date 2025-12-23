@@ -1,12 +1,12 @@
-package com.example.baitap11.adapter
+package com.example.baitap10.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.baitap11.databinding.ItemTaskBinding
-import com.example.baitap11.model.Task
+import com.example.baitap10.databinding.ItemTaskBinding
+import com.example.baitap10.model.Task
 
 class TaskAdapter(
     private val onTaskDelete: (Task) -> Unit,

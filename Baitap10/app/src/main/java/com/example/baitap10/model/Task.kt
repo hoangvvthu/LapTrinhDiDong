@@ -1,4 +1,4 @@
-package com.example.baitap11.model
+package com.example.baitap10.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

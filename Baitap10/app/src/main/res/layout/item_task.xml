@@ -3,29 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.example.baitap11.util.DateUtils" />
+        <import type="com.example.baitap10.util.DateUtils" />
         <import type="android.view.View" />
         <variable
             name="task"
-            type="com.example.baitap11.model.Task" />
+            type="com.example.baitap10.model.Task" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp">
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="6dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="1dp"
+        app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp"
+            android:padding="12dp"
             android:gravity="center_vertical">
 
-            <!-- Checkbox chỉ xóa khi được tích vào -->
-            <CheckBox
+            <!-- Checkbox hiện đại -->
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cbCompleted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +45,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{task.title}"
-                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -51,27 +54,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{task.description}"
-                    android:textSize="14sp" />
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
 
-                <TextView
-                    android:id="@+id/tvDueDate"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text='@{"Hạn: " + DateUtils.formatDate(task.dueDate)}'
-                    android:textSize="12sp"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:textStyle="italic"
-                    android:visibility="@{task.dueDate != null ? View.VISIBLE : View.GONE}" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:visibility="@{task.dueDate != null ? View.VISIBLE : View.GONE}">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@android:drawable/ic_lock_idle_alarm"
+                        app:tint="#F44336" />
+
+                    <TextView
+                        android:id="@+id/tvDueDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{DateUtils.formatDate(task.dueDate)}'
+                        android:textSize="12sp"
+                        android:textColor="#F44336"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
             </LinearLayout>
 
-            <!-- Nút chỉnh sửa mới -->
             <ImageButton
                 android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@android:drawable/ic_menu_edit"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="?attr/colorPrimary" />
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

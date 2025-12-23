@@ -1,4 +1,4 @@
-package com.example.baitap11.viewmodel
+package com.example.baitap10.viewmodel
 
 import android.app.AlarmManager
 import android.app.Application
@@ -6,10 +6,10 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.*
-import com.example.baitap11.data.AppDatabase
-import com.example.baitap11.model.Task
-import com.example.baitap11.receiver.AlarmReceiver
-import com.example.baitap11.repository.TaskRepository
+import com.example.baitap10.data.AppDatabase
+import com.example.baitap10.model.Task
+import com.example.baitap10.receiver.AlarmReceiver
+import com.example.baitap10.repository.TaskRepository
 import kotlinx.coroutines.launch
 
 class TaskViewModel(application: Application, private val userId: Int) : AndroidViewModel(application) {

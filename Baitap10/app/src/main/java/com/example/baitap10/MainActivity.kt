@@ -1,4 +1,4 @@
-package com.example.baitap11
+package com.example.baitap10
 
 import android.Manifest
 import android.app.DatePickerDialog
@@ -12,10 +12,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import com.example.baitap11.adapter.TaskAdapter
-import com.example.baitap11.databinding.ActivityMainBinding
-import com.example.baitap11.util.DateUtils
-import com.example.baitap11.viewmodel.TaskViewModel
+import com.example.baitap10.adapter.TaskAdapter
+import com.example.baitap10.databinding.ActivityMainBinding
+import com.example.baitap10.util.DateUtils
+import com.example.baitap10.viewmodel.TaskViewModel
 import java.util.*
 
 class MainActivity : AppCompatActivity() {

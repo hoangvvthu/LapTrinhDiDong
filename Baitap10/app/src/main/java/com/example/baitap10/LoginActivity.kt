@@ -1,4 +1,4 @@
-package com.example.baitap11
+package com.example.baitap10
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.baitap11.databinding.ActivityLoginBinding
-import com.example.baitap11.viewmodel.AuthViewModel
+import com.example.baitap10.databinding.ActivityLoginBinding
+import com.example.baitap10.viewmodel.AuthViewModel
 
 class LoginActivity : AppCompatActivity() {
 

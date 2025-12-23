@@ -1,10 +1,10 @@
-package com.example.baitap11.viewmodel
+package com.example.baitap10.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.baitap11.data.AppDatabase
-import com.example.baitap11.model.User
-import com.example.baitap11.repository.UserRepository
+import com.example.baitap10.data.AppDatabase
+import com.example.baitap10.model.User
+import com.example.baitap10.repository.UserRepository
 import kotlinx.coroutines.launch
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {

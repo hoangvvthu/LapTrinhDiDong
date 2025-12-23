@@ -1,7 +1,7 @@
-package com.example.baitap11.repository
+package com.example.baitap10.repository
 
-import com.example.baitap11.data.UserDao
-import com.example.baitap11.model.User
+import com.example.baitap10.data.UserDao
+import com.example.baitap10.model.User
 
 class UserRepository(private val userDao: UserDao) {
     suspend fun register(user: User) = userDao.register(user)
