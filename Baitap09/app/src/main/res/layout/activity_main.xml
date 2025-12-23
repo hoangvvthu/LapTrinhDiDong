@@ -1,130 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#F0F2F5"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/red"
-        app:title="Hồ sơ cá nhân"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:titleTextColor="@color/white" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/cardInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/ic_launcher_background"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp" />
-
-    <TableLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <TableRow>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/etMessage"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Mã ID"
-                android:textSize="18sp" />
+                android:layout_weight="1"
+                android:background="@drawable/bg_input_field"
+                android:hint="Nhập tin nhắn..."
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp"
+                android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/tvId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="23162099"
-                android:textSize="18sp" />
-        </TableRow>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSend"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="30dp"
+                app:icon="@android:drawable/ic_menu_send"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="24dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tên đăng nhập"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="thuhvv"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Họ tên"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvFullName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Hoàng Văn Vương Thu"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="thuhvv23162@gmail.com"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Giới tính"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Nam"
-                android:textSize="18sp" />
-        </TableRow>
-    </TableLayout>
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/red"
-        android:text="ĐĂNG XUẤT"
-        android:textColor="@color/white" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
