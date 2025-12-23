@@ -1,130 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.example.baitap11.viewmodel.TaskViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/red"
-        app:title="Hồ sơ cá nhân"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:titleTextColor="@color/white" />
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/ic_launcher_background"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp" />
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Danh sách công việc"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_margin="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        <EditText
+            android:id="@+id/etTaskTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiêu đề công việc"
+            android:text="@={viewModel.newTaskTitle}"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
 
-        <TableRow>
+        <EditText
+            android:id="@+id/etTaskDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mô tả"
+            android:text="@={viewModel.newTaskDescription}"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/etTaskTitle" />
 
-            <TextView
+        <LinearLayout
+            android:id="@+id/layoutPickDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toBottomOf="@id/etTaskDesc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnAdd">
+
+            <Button
+                android:id="@+id/btnPickDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mã ID"
-                android:textSize="18sp" />
+                android:text="Chọn thời gian nhắc" />
 
             <TextView
-                android:id="@+id/tvId"
+                android:id="@+id/tvSelectedDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="23162099"
-                android:textSize="18sp" />
-        </TableRow>
+                android:text="Chưa chọn"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textStyle="italic" />
+        </LinearLayout>
 
-        <TableRow>
+        <LinearLayout
+            android:id="@+id/layoutButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@id/layoutPickDate"
+            app:layout_constraintBottom_toBottomOf="@id/layoutPickDate"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
+            <Button
+                android:id="@+id/btnCancelEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên đăng nhập"
-                android:textSize="18sp" />
+                android:text="Hủy"
+                android:layout_marginEnd="8dp"
+                android:visibility="@{viewModel.editingTask != null ? View.VISIBLE : View.GONE}"
+                android:onClick="@{() -> viewModel.resetForm()}" />
 
-            <TextView
-                android:id="@+id/tvUsername"
+            <Button
+                android:id="@+id/btnAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="thuhvv"
-                android:textSize="18sp" />
-        </TableRow>
+                android:text='@{viewModel.editingTask != null ? "Lưu" : "Thêm"}'
+                android:onClick="@{() -> viewModel.addTask()}" />
+        </LinearLayout>
 
-        <TableRow>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTasks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/layoutPickDate"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Họ tên"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvFullName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Hoàng Văn Vương Thu"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="thuhvv23162@gmail.com"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Giới tính"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Nam"
-                android:textSize="18sp" />
-        </TableRow>
-    </TableLayout>
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/red"
-        android:text="ĐĂNG XUẤT"
-        android:textColor="@color/white" />
-
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
