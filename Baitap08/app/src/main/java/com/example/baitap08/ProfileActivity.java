@@ -36,10 +36,8 @@ public class ProfileActivity extends AppCompatActivity implements MyVideosAdapte
     private RecyclerView rvMyVideos;
     private MyVideosAdapter adapter;
     private final ArrayList<VideoShort> myVideos = new ArrayList<>();
-
     private FirebaseAuth auth;
     private FirebaseFirestore db;
-
     private ActivityResultLauncher<String> imagePickerLauncher;
 
     @Override
@@ -52,7 +50,9 @@ public class ProfileActivity extends AppCompatActivity implements MyVideosAdapte
 
         Toolbar toolbar = findViewById(R.id.toolbarProfile);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Trang cá nhân");
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Trang cá nhân");
+        }
 
         ivProfileImage = findViewById(R.id.ivProfileImage);
         tvProfileEmail = findViewById(R.id.tvProfileEmail);
@@ -118,7 +118,9 @@ public class ProfileActivity extends AppCompatActivity implements MyVideosAdapte
         FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
             tvProfileEmail.setText(user.getEmail());
+            ivProfileImage.setColorFilter(android.graphics.Color.GRAY);
             if (user.getPhotoUrl() != null) {
+                ivProfileImage.clearColorFilter();
                 Glide.with(this).load(user.getPhotoUrl()).into(ivProfileImage);
             }
         }
@@ -130,7 +132,6 @@ public class ProfileActivity extends AppCompatActivity implements MyVideosAdapte
 
         db.collection("videos")
                 .whereEqualTo("userEmail", user.getEmail())
-                .orderBy("likes", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -140,6 +141,9 @@ public class ProfileActivity extends AppCompatActivity implements MyVideosAdapte
                             myVideos.add(video);
                         }
                         adapter.notifyDataSetChanged();
+                    } else {
+                        String error = task.getException() != null ? task.getException().getMessage() : "Lỗi không xác định";
+                        Toast.makeText(this, "Lỗi tải video: " + error, Toast.LENGTH_LONG).show();
                     }
                 });
     }
@@ -157,8 +161,7 @@ public class ProfileActivity extends AppCompatActivity implements MyVideosAdapte
     }
 
     private void uploadProfileImageToCloudinary(Uri imageUri) {
-        // <<<--- VIỆC CẦN LÀM: THAY THẾ CHÍNH XÁC TÊN PRESET CỦA BẠN VÀO ĐÂY
-        String uploadPreset = "YOUR_UNSIGNED_UPLOAD_PRESET"; // Ví dụ: "ml_default"
+        String uploadPreset = "android_preset"; 
 
         MediaManager.get().upload(imageUri)
                 .unsigned(uploadPreset)
@@ -194,7 +197,8 @@ public class ProfileActivity extends AppCompatActivity implements MyVideosAdapte
         user.updateProfile(profileUpdates)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(ProfileActivity.this, "Cập nhật ảnh đại diện thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "Cập nhật thành công. Vui lòng mở lại trang để thấy ảnh mới.", Toast.LENGTH_SHORT).show();
+                        loadUserInfo();
                     }
                 });
     }

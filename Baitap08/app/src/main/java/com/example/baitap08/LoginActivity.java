@@ -31,9 +31,6 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        // Dòng này không cần thiết nữa vì đã chuyển sang MyApplication
-        // CloudinaryConfig.init(getApplicationContext());
-
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);

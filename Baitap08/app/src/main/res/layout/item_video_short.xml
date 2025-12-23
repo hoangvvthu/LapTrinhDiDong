@@ -14,12 +14,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Vùng thông tin người đăng -->
     <LinearLayout
+        android:id="@+id/layoutUserInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="60dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,12 +42,12 @@
             tools:text="user@example.com" />
     </LinearLayout>
 
-    <!-- Vùng các nút tương tác -->
     <LinearLayout
+        android:id="@+id/layoutActions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="60dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +65,22 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:textColor="@android:color/white"
-            tools:text="200" />
+            tools:text="0" />
+
+        <!-- Nút Dislike mới -->
+        <ImageView
+            android:id="@+id/ivDislike"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_dislike" />
+
+        <TextView
+            android:id="@+id/tvDislikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColor="@android:color/white"
+            tools:text="0" />
 
         <ImageView
             android:id="@+id/ivShare"

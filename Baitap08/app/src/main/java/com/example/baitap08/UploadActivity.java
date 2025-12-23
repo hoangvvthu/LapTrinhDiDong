@@ -74,8 +74,7 @@ public class UploadActivity extends AppCompatActivity {
         progressBarUpload.setVisibility(View.VISIBLE);
         btnUploadVideo.setEnabled(false);
 
-        // <<<--- VIỆC CẦN LÀM: THAY THẾ CHÍNH XÁC TÊN PRESET CỦA BẠN VÀO ĐÂY
-        String uploadPreset = "android_preset"; // Ví dụ: "ml_default"
+        String uploadPreset = "android_preset"; 
 
         MediaManager.get().upload(videoUri)
                 .unsigned(uploadPreset)
@@ -115,7 +114,7 @@ public class UploadActivity extends AppCompatActivity {
         String userEmail = user.getEmail();
         String avatarUrl = (user.getPhotoUrl() != null) ? user.getPhotoUrl().toString() : "";
 
-        VideoShort newVideo = new VideoShort(videoUrl, userEmail, avatarUrl, 0);
+        VideoShort newVideo = new VideoShort(videoUrl, userEmail, avatarUrl, 0, 0);
 
         db.collection("videos").add(newVideo)
                 .addOnSuccessListener(documentReference -> {

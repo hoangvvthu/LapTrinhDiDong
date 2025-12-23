@@ -14,6 +14,7 @@ import androidx.media3.ui.PlayerView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FieldValue;
 import java.util.List;
@@ -22,8 +23,8 @@ public class VideoShortsAdapter extends RecyclerView.Adapter<VideoShortsAdapter.
 
     private final List<VideoShort> videoShorts;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-    // 1. SỬA LẠI CONSTRUCTOR CHO ĐÚNG
     public VideoShortsAdapter(List<VideoShort> videoShorts) {
         this.videoShorts = videoShorts;
     }
@@ -47,10 +48,8 @@ public class VideoShortsAdapter extends RecyclerView.Adapter<VideoShortsAdapter.
 
     class VideoShortViewHolder extends RecyclerView.ViewHolder {
         PlayerView playerView;
-        TextView tvEmail;
-        TextView tvLikes;
-        ImageView ivLike;
-        ImageView ivAvatar;
+        TextView tvEmail, tvLikes, tvDislikes;
+        ImageView ivLike, ivDislike, ivAvatar;
         ExoPlayer player;
 
         public VideoShortViewHolder(@NonNull View itemView) {
@@ -58,15 +57,17 @@ public class VideoShortsAdapter extends RecyclerView.Adapter<VideoShortsAdapter.
             playerView = itemView.findViewById(R.id.playerView);
             tvEmail = itemView.findViewById(R.id.tvEmail);
             tvLikes = itemView.findViewById(R.id.tvLikes);
+            tvDislikes = itemView.findViewById(R.id.tvDislikes);
             ivLike = itemView.findViewById(R.id.ivLike);
+            ivDislike = itemView.findViewById(R.id.ivDislike);
             ivAvatar = itemView.findViewById(R.id.ivAvatar);
         }
 
         void bind(VideoShort videoShort) {
             tvEmail.setText(videoShort.getUserEmail());
             tvLikes.setText(String.valueOf(videoShort.getLikes()));
+            tvDislikes.setText(String.valueOf(videoShort.getDislikes()));
 
-            // Load user avatar
             if (videoShort.getUserAvatarUrl() != null && !videoShort.getUserAvatarUrl().isEmpty()) {
                 Glide.with(itemView.getContext())
                         .load(videoShort.getUserAvatarUrl())
@@ -80,41 +81,81 @@ public class VideoShortsAdapter extends RecyclerView.Adapter<VideoShortsAdapter.
                         .into(ivAvatar);
             }
 
-            // Like button
-            ivLike.setColorFilter(Color.WHITE);
-            ivLike.setEnabled(true);
-            ivLike.setOnClickListener(v -> {
-                if (videoShort.getDocumentId() != null) {
-                    updateLikes(videoShort);
-                }
-            });
+            // UI trạng thái Like/Dislike dựa trên danh sách trong database
+            boolean isLiked = videoShort.getLikedBy().contains(currentUserId);
+            boolean isDisliked = videoShort.getDislikedBy().contains(currentUserId);
+            
+            ivLike.setColorFilter(isLiked ? Color.RED : Color.WHITE);
+            ivDislike.setColorFilter(isDisliked ? Color.parseColor("#808080") : Color.WHITE);
 
-            // 2. KIỂM TRA KỸ URL TRƯỚC KHI PHÁT
+            ivLike.setOnClickListener(v -> toggleLike(videoShort));
+            ivDislike.setOnClickListener(v -> toggleDislike(videoShort));
+
             if (videoShort.getVideoUrl() != null && !videoShort.getVideoUrl().isEmpty()) {
-                player = new ExoPlayer.Builder(itemView.getContext()).build();
-                playerView.setPlayer(player);
-                MediaItem mediaItem = MediaItem.fromUri(Uri.parse(videoShort.getVideoUrl()));
-                player.setMediaItem(mediaItem);
-                player.prepare();
-                player.setPlayWhenReady(true);
+                try {
+                    player = new ExoPlayer.Builder(itemView.getContext()).build();
+                    playerView.setPlayer(player);
+                    MediaItem mediaItem = MediaItem.fromUri(Uri.parse(videoShort.getVideoUrl()));
+                    player.setMediaItem(mediaItem);
+                    player.prepare();
+                    player.setPlayWhenReady(true);
+                } catch (Exception e) {}
             }
         }
 
-        private void updateLikes(VideoShort videoShort) {
-            ivLike.setEnabled(false);
+        private void toggleLike(VideoShort videoShort) {
+            String docId = videoShort.getDocumentId();
+            boolean isCurrentlyLiked = videoShort.getLikedBy().contains(currentUserId);
+            boolean isCurrentlyDisliked = videoShort.getDislikedBy().contains(currentUserId);
 
-            db.collection("videos").document(videoShort.getDocumentId())
-                    .update("likes", FieldValue.increment(1))
-                    .addOnSuccessListener(aVoid -> {
-                        int newLikes = Integer.parseInt(tvLikes.getText().toString()) + 1;
-                        tvLikes.setText(String.valueOf(newLikes));
-                        ivLike.setColorFilter(Color.RED);
-                    })
-                    .addOnFailureListener(e -> ivLike.setEnabled(true));
+            if (isCurrentlyLiked) {
+                // Hủy Like
+                db.collection("videos").document(docId).update(
+                        "likes", FieldValue.increment(-1),
+                        "likedBy", FieldValue.arrayRemove(currentUserId)
+                );
+                videoShort.getLikedBy().remove(currentUserId);
+                videoShort.setLikes(videoShort.getLikes() - 1);
+            } else {
+                // Thêm Like
+                if (isCurrentlyDisliked) toggleDislike(videoShort); // Nếu đang dislike thì hủy nó đi
+                db.collection("videos").document(docId).update(
+                        "likes", FieldValue.increment(1),
+                        "likedBy", FieldValue.arrayUnion(currentUserId)
+                );
+                videoShort.getLikedBy().add(currentUserId);
+                videoShort.setLikes(videoShort.getLikes() + 1);
+            }
+            notifyItemChanged(getAdapterPosition());
+        }
+
+        private void toggleDislike(VideoShort videoShort) {
+            String docId = videoShort.getDocumentId();
+            boolean isCurrentlyLiked = videoShort.getLikedBy().contains(currentUserId);
+            boolean isCurrentlyDisliked = videoShort.getDislikedBy().contains(currentUserId);
+
+            if (isCurrentlyDisliked) {
+                // Hủy Dislike
+                db.collection("videos").document(docId).update(
+                        "dislikes", FieldValue.increment(-1),
+                        "dislikedBy", FieldValue.arrayRemove(currentUserId)
+                );
+                videoShort.getDislikedBy().remove(currentUserId);
+                videoShort.setDislikes(videoShort.getDislikes() - 1);
+            } else {
+                // Thêm Dislike
+                if (isCurrentlyLiked) toggleLike(videoShort); // Nếu đang like thì hủy nó đi
+                db.collection("videos").document(docId).update(
+                        "dislikes", FieldValue.increment(1),
+                        "dislikedBy", FieldValue.arrayUnion(currentUserId)
+                );
+                videoShort.getDislikedBy().add(currentUserId);
+                videoShort.setDislikes(videoShort.getDislikes() + 1);
+            }
+            notifyItemChanged(getAdapterPosition());
         }
     }
 
-    // 3. GIẢI PHÓNG PLAYER MỘT CÁCH AN TOÀN
     @Override
     public void onViewDetachedFromWindow(@NonNull VideoShortViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
@@ -127,8 +168,6 @@ public class VideoShortsAdapter extends RecyclerView.Adapter<VideoShortsAdapter.
     @Override
     public void onViewAttachedToWindow(@NonNull VideoShortViewHolder holder) {
         super.onViewAttachedToWindow(holder);
-        if (holder.player != null) {
-            holder.player.play();
-        }
+        if (holder.player != null) holder.player.play();
     }
 }

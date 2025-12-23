@@ -14,9 +14,9 @@ public class CloudinaryConfig {
         }
 
         Map<String, String> config = new HashMap<>();
-        config.put("cloud_name", "dpwsigzh3"); // <-- THAY THẾ BẰNG CLOUD NAME CỦA BẠN
-        config.put("api_key", "942196361244221");          // <-- THAY THẾ BẰNG API KEY CỦA BẠN
-        config.put("api_secret", "cKUkKbvOkFpye0IAavbWujPsZlw");    // <-- THAY THẾ BẰNG API SECRET CỦA BẠN
+        config.put("cloud_name", "dpwsigzh3");
+        config.put("api_key", "942196361244221");
+        config.put("api_secret", "cKUkKbvOkFpye0IAavbWujPsZlw");
         MediaManager.init(context, config);
 
         isInitialized = true;
