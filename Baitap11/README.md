@@ -1,7 +1,7 @@
 # 🧩 Bài tập 11 - Lập trình di động (Android)
 
 ## 📋 Yêu cầu  
-**Tìm hiểu mô hình thiết kế MVVM: Modle - View ↔ ViewModel bằng DataBinding / State**
+**Tìm hiểu mô hình thiết kế MVVM: Modle - View ↔ ViewModel bằng DataBinding / State**  
 **Viết 01 App ToDoList bằng ngôn ngữ Kotlin có các chức năng: đăng ký tài khoản, đăng nhập qua mô hình MVVM. Dữ liệu công việc được luu trữ trong SQL Lite**   
 
 Deadline 16g45 ngày 19/12/2025
