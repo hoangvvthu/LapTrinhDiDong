@@ -1,7 +1,7 @@
 # 🧩 Bài tập 08 - Lập trình di động (Android)
 
 ## 📋 Yêu cầu  
-**sử dụng chức năng webview để load nội dung trang web có reponsive.**  
+**Sử dụng chức năng webview để load nội dung trang web có reponsive.**  
 **Xây dựng chức năng Signup và Login bằng firebase cho bài tập video short.**  
 **Xây dựng chức năng upload video lên Firebase Storage hoặc Cloudinary theo User cho bài tập.**  
 
