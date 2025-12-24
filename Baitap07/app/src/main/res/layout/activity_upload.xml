@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".UploadActivity">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarUpload"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/red"
-        app:navigationIcon="?attr/homeAsUpIndicator"
+        android:background="#d52121"
         app:title="Back"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@android:color/white" />
 
     <ImageView
-        android:id="@+id/image_preview"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/imgChoose"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/ic_launcher_background" />
+        android:layout_marginTop="48dp"
+        android:padding="16dp"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_menu_myplaces" />
 
     <Button
-        android:id="@+id/btn_choose_file"
+        android:id="@+id/btnChoose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/red"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#d52121"
         android:text="CHỌN FILE"
-        android:textColor="@color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btn_upload_images"
+        android:id="@+id/btnUpload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/red"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#d52121"
         android:text="UPLOAD IMAGES"
-        android:textColor="@color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
 </LinearLayout>
